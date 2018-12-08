@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    restart: always
+    build: .
+    ports:
+    - 5000:5000
+    networks:
+    - web_nw
+    volumes:
+    - .:/app
+    entrypoint: ["python", "app.py"]
+networks:
+  web_nw:
+    driver: bridge
