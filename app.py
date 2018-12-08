@@ -21,6 +21,16 @@ IDEA_APP_ID = os.environ["IDEA_APP_ID"]
 IDEA_PASSWD = os.environ["IDEA_PASSWD"]
 
 
+@app.route('/', methods=["GET"])
+def index():
+    return jsonify({
+        "msg": "this is un official version of idea-mart api please be considerate before you use and api will change time to time.Please keep an eye on the postman and your neighbourings ;)",
+        "api_endpoint": 'https://idea-mart.herokuapp.com',
+        "repo_url": "https://github.com/winhtaikaung/idea-mart-api",
+        "postman_collection": "https://www.getpostman.com/collections/722bc31cf3fb4d522be0",
+        "contact": "http://t.me/waung"})
+
+
 @app.route('/smsOperation', methods=["GET", "POST"])
 def sms_ops():
     if request.method == "GET":
