@@ -1,9 +1,8 @@
 __author__ = 'Thilina_08838'
-from flask import *
-
 import urllib.request
 from urllib.request import urlopen
 
+from flask import *
 
 app = Flask(__name__)
 app.debug = True
@@ -17,7 +16,6 @@ def hello_world():
 
 @app.route('/ussdReceiver', methods=["GET", "POST"])
 def ussd_receiver():
-
     if request.method == "GET":
         response = make_response("Yes, you are alive")
         response.headers['Content-Type'] = 'application/json'
@@ -37,12 +35,14 @@ def ussd_receiver():
                }
         with open("USSDMT.txt", "w") as text_file:
             print("Message sent: {}".format(res), file=text_file)
-        url = "http://localhost:7000/ussd/send" #Change the end point to the production when using in the live environment
+        url = "http://localhost:7000/ussd/send"  # Change the end point to the production when using in the live environment
 
         res = json.dumps(res).encode('utf8')
-        req = urllib.request.Request(url, res, headers={"Content-Type": "application/json", "Accept": "application/json"})
+        req = urllib.request.Request(url, res,
+                                     headers={"Content-Type": "application/json", "Accept": "application/json"})
         response = urlopen(req)
         return response
+
 
 if __name__ == '__main__':
     app.run(host="localhost", port=5000)

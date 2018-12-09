@@ -8,9 +8,7 @@ from urllib.request import urlopen
 from dotenv import load_dotenv
 from flask import *
 
-
 from helper import json_serialize
-
 
 app = Flask(__name__)
 app.debug = True
@@ -81,9 +79,6 @@ def sms_ops():
             return response
 
 
-
-
-
 if __name__ == '__main__':
     app.logger.info(str("SMS GATEWAY IN .env file-->> {}").format(str(os.environ["SMS_GW_HOST"])))
     from USSDReceiver import init_ussd_receiver
@@ -92,10 +87,11 @@ if __name__ == '__main__':
     from ussdSender import init_ussd_sender
     from LBS import init_lbs_sender
     from CAAS import init_caas_request
+
     init_ussd_receiver(app, IDEA_PASSWD, SMS_GW_HOST)
-    init_ussd_sender(app,IDEA_PASSWD,SMS_GW_HOST,IDEA_APP_ID)
+    init_ussd_sender(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID)
     init_sms_sender(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID)
     init_sms_receiver(app)
-    init_lbs_sender(app,IDEA_PASSWD,SMS_GW_HOST,IDEA_APP_ID)
-    init_caas_request(app,IDEA_PASSWD,SMS_GW_HOST,IDEA_APP_ID)
+    init_lbs_sender(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID)
+    init_caas_request(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID)
     app.run(host="0.0.0.0", port=int(os.environ["PORT"]))
