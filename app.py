@@ -25,6 +25,7 @@ IDEA_APP_ID = os.environ["IDEA_APP_ID"]
 IDEA_PASSWD = os.environ["IDEA_PASSWD"]
 
 
+
 @app.route('/', methods=["GET"])
 def index():
     return jsonify({
@@ -83,8 +84,25 @@ def sms_ops():
             return response
 
 
+@app.route('/subscription', methods=["GET","POST"])
+def subscription():
+    if request.method == "GET":
+        response = jsonify({"msg": "Yes, you have subscribed to sms"})
+        response.headers['Content-Type'] = 'application/json'
+        response.headers['Accept'] = 'application/json'
+        return response
+    else:
+        message_content = json.loads(request.data)
+        with open("SUB_CRIBTION.txt", "w") as text_file:
+            print("Received message: {}".format(message_content), file=text_file)  # Capture the incoming SMS
+        return jsonify(message_content)
+
+
 if __name__ == '__main__':
     app.logger.info(str("SMS GATEWAY IN .env file-->> {}").format(str(os.environ["SMS_GW_HOST"])))
+    print(SMS_GW_HOST)
+    print(IDEA_APP_ID)
+    print(IDEA_PASSWD)
     from USSDReceiver import init_ussd_receiver
     from SMSSender import init_sms_sender
     from SMSReceiver import init_sms_receiver
