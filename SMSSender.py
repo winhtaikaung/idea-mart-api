@@ -12,7 +12,7 @@ def init_sms_sender(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID):
     def sms_sender():
         res = {
             "message": "Hello World",
-            "destinationAddresses": "tel:94771122336",  # Use the number, in format received from ideamart
+            "destinationAddresses":  ["tel:959950049292"],  # Use the number, in format received from ideamart
             "password": str(IDEA_PASSWD),  # This should be replaced with your ideamart app password
             "applicationId": str(IDEA_APP_ID)  # Replace this with your APP ID
         }

@@ -12,7 +12,7 @@ def init_ussd_sender(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID):
     def ussd_sender():
         res = {
             "message": "1. Press One 2. Press two 3. Press three, 4. Exit",
-            "destinationAddress": "tel:94777123456",  # Use the MSISDN in the same format you received
+            "destinationAddress": "tel:959950049292",  # Use the MSISDN in the same format you received
             "password": str(IDEA_PASSWD),  # This should be replaced with your ideamart app password
             "applicationId": str(IDEA_APP_ID),  # Replace this with your APP ID
             "ussdOperation": "mt-cont",

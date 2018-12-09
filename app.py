@@ -11,10 +11,14 @@ from flask import *
 from helper import json_serialize
 
 app = Flask(__name__)
-app.debug = True
 
 dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
+load_dotenv(dotenv_path, verbose=True)
+
+if os.environ["ENV"] != "production":
+    app.debug = True
+else:
+    app.debug = False
 
 SMS_GW_HOST = os.environ["SMS_GW_HOST"]
 IDEA_APP_ID = os.environ["IDEA_APP_ID"]
