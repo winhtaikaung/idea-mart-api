@@ -23,6 +23,8 @@ else:
 SMS_GW_HOST = os.environ["SMS_GW_HOST"]
 IDEA_APP_ID = os.environ["IDEA_APP_ID"]
 IDEA_PASSWD = os.environ["IDEA_PASSWD"]
+SUBSCRIBER_ID = os.environ["SUBSCRIBER_ID"]
+DEST_TEL_NUM = os.environ["DEST_TEL_NUM"]
 
 
 
@@ -111,9 +113,9 @@ if __name__ == '__main__':
     from CAAS import init_caas_request
 
     init_ussd_receiver(app, IDEA_PASSWD, SMS_GW_HOST)
-    init_ussd_sender(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID)
-    init_sms_sender(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID)
+    init_ussd_sender(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID,DEST_TEL_NUM)
+    init_sms_sender(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID,DEST_TEL_NUM)
     init_sms_receiver(app)
-    init_lbs_sender(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID)
-    init_caas_request(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID)
+    init_lbs_sender(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID,SUBSCRIBER_ID)
+    init_caas_request(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID,SUBSCRIBER_ID)
     app.run(host="0.0.0.0", port=int(os.environ["PORT"]))

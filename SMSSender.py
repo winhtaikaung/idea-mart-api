@@ -7,12 +7,12 @@ from flask import *
 from helper import json_serialize
 
 
-def init_sms_sender(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID):
+def init_sms_sender(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID,DEST_TEL_NUM):
     @app.route('/smsSender', methods=["GET", "POST"])
     def sms_sender():
         res = {
             "message": "Hello World",
-            "destinationAddresses":  ["tel:959950049292"],  # Use the number, in format received from ideamart
+            "destinationAddresses":  ["tel:"+str(DEST_TEL_NUM)],  # Use the number, in format received from ideamart
             "password": str(IDEA_PASSWD),  # This should be replaced with your ideamart app password
             "applicationId": str(IDEA_APP_ID)  # Replace this with your APP ID
         }

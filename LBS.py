@@ -8,13 +8,13 @@ from flask import *
 from helper import json_serialize
 
 
-def init_lbs_sender(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID):
+def init_lbs_sender(app, IDEA_PASSWD, SMS_GW_HOST, IDEA_APP_ID,SUBSCRIBER_ID):
     @app.route('/lbsSender', methods=["GET", "POST"])
     def lbs_request():
         res = {
             "password": str(IDEA_PASSWD),  # This should be replaced with your ideamart app password
             "applicationId": str(IDEA_APP_ID),  # Replace this with your APP ID
-            "subscriberId": "tel:94771234567",  # Use the MSISDN in the format you received
+            "subscriberId": "tel:"+str(SUBSCRIBER_ID),  # Use the MSISDN in the format you received
             "serviceType": "IMMEDIATE",
             "responseTime": "NO_DELAY",
             "freshness": "HIGH",
